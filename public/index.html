@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <title>CSV parser</title>
+  </head>
+  <body>
+    <label class="input-container" for="csv-input">
+      <img src="./images/csv-icon.png" alt="CSV Icon" />
+
+      <strong>Click to select a file</strong>
+    </label>
+
+    <div class="info-container">
+      <strong>Filename: </strong>
+      <span id="filename-field"></span>
+    </div>
+
+    <input type="file" id="csv-input" />
+
+    <script src="./bundle.js"></script>
+    <script>
+      let csvInput;
+
+      csvInput = document.getElementById('csv-input');
+
+      csvInput.addEventListener('change', (e) => {
+        CSV.handleSelectFile(csvInput).then((response) => {
+          document.getElementById('filename-field').innerHTML =
+            response.filename;
+
+          console.log(response);
+
+          alert('Check your console!');
+        });
+      });
+    </script>
+  </body>
+</html>
