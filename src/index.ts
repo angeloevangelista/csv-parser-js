@@ -1,5 +1,6 @@
-module.exports = require('./csv');
+module.exports = require('./csv-parser');
 
+// import CSV from './csv';
 // window.onload = () => {
 //   let csvInput: HTMLInputElement | null;
 

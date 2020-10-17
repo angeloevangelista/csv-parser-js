@@ -26,20 +26,18 @@
 
     <script src="./bundle.js"></script>
     <script>
-      let csvInput;
-
-      csvInput = document.getElementById('csv-input');
-
-      csvInput.addEventListener('change', (e) => {
-        CSV.handleSelectFile(csvInput).then((response) => {
+      function handleChangeFile(event) {
+        CSV.handleSelectFile({ inputElement: this }).then((response) => {
           document.getElementById('filename-field').innerHTML =
             response.filename;
 
           console.log(response);
-
-          // alert('Check your console!');
         });
-      });
+      }
+
+      document
+        .getElementById('csv-input')
+        .addEventListener('change', handleChangeFile);
     </script>
   </body>
 </html>
