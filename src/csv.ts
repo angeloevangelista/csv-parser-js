@@ -47,35 +47,24 @@ const CSV: ICSV = {
 
     lines.shift();
 
-    const values = lines.map((line) => line.split(','));
-
     let collection: Array<{
       [key: string]: string;
     }> = [];
 
-    // lines.forEach((line) => {
-    //   let item = {};
+    lines.forEach((line) => {
+      const lineValues = line.split(',');
 
-    //   header.forEach((headerColumn, headerColumnIndex) => {
-    //     Object.assign(item, {
-    //       [headerColumn]: line[headerColumnIndex],
-    //     });
-    //   });
+      let serializedLine = {};
 
-    //   collection.push(item);
-    // });
+      header.forEach((headerColumn, headerColumnIndex) => {
+        serializedLine = {
+          ...serializedLine,
+          [headerColumn]: lineValues[headerColumnIndex],
+        };
+      });
 
-    for (let i = 0; i < lines.length; i++) {
-      let item = {};
-
-      for (let j = 0; j < header.length; j++) {
-        Object.assign(item, {
-          [header[j]]: values[i][j],
-        });
-      }
-
-      collection.push(item);
-    }
+      collection.push(serializedLine);
+    });
 
     return collection;
   },
