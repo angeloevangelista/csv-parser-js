@@ -9,13 +9,13 @@ interface ICSV {
 
   toJson: (params: ToJson.IToJsonParams) => ToJson.ToJsonResponse;
 
-  handleSelectFile: (
-    params: HandleInputChange.IHandleSelectFileParams,
-  ) => HandleInputChange.HandleSelectFileResponse;
+  handleInputChange: (
+    params: HandleInputChange.IHandleInputChangeParams,
+  ) => HandleInputChange.HandleInputChangeResponse;
 }
 
 const CSV: ICSV = {
-  handleSelectFile: HandleInputChange.default,
+  handleInputChange: HandleInputChange.default,
   loadContent: LoadContent.default,
   toJson: ToJson.default,
 };

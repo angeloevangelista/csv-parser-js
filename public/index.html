@@ -27,7 +27,7 @@
     <script src="./csv-parser.js"></script>
     <script>
       function handleChangeFile(event) {
-        CSV.handleSelectFile({ inputElement: this })
+        CSV.handleInputChange({ inputElement: this })
           .then((response) => {
             document.getElementById('filename-field').innerHTML =
               response.filename;

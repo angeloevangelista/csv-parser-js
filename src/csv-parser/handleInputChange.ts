@@ -1,20 +1,22 @@
 import loadContent from './loadContent';
 import toJson from './toJson';
 
-interface IHandleSelectFileParams {
+interface IHandleInputChangeParams {
   inputElement: HTMLInputElement | null;
 }
 
-interface IHandleSelectFileResponse {
+interface IHandleInputChangeResponse {
   filename: string;
   content: object[];
 }
 
-type HandleSelectFileResponse = Promise<IHandleSelectFileResponse | undefined>;
+type HandleInputChangeResponse = Promise<
+  IHandleInputChangeResponse | undefined
+>;
 
-async function handleSelectFile({
+async function handleInputChange({
   inputElement,
-}: IHandleSelectFileParams): HandleSelectFileResponse {
+}: IHandleInputChangeParams): HandleInputChangeResponse {
   if (!inputElement) {
     return Promise.reject('Element not found');
   }
@@ -40,5 +42,9 @@ async function handleSelectFile({
   };
 }
 
-export default handleSelectFile;
-export { IHandleSelectFileParams, HandleSelectFileResponse, handleSelectFile };
+export default handleInputChange;
+export {
+  IHandleInputChangeParams,
+  HandleInputChangeResponse,
+  handleInputChange,
+};
