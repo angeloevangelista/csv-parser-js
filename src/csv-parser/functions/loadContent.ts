@@ -11,7 +11,7 @@ async function loadContent({
     try {
       const reader = new FileReader();
 
-      let csvContent: string | ArrayBuffer | null = '';
+      let csvContent: string | ArrayBuffer | null = null;
 
       reader.onload = () => {
         csvContent = reader.result;
