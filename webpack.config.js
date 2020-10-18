@@ -8,7 +8,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
-    // port: 5000,
+    port: 5000,
   },
   devtool: 'source-map',
   module: {
