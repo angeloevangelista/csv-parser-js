@@ -1,16 +1,20 @@
 interface IToJsonParams {
   csvContent: string;
+  separator?: string;
 }
 
 type ToJsonResponse = Array<{
-  [key: string]: string;
+  [key: string]: string | number;
 }>;
 
-function toJson({ csvContent }: IToJsonParams): ToJsonResponse {
+function toJson({
+  csvContent,
+  separator = ',',
+}: IToJsonParams): ToJsonResponse {
   let lines = csvContent.split('\n');
 
   let header = lines[0]
-    .split(',')
+    .split(separator)
     .map((column) => column.trim().replace(/"/g, ''));
 
   lines.shift();
@@ -22,7 +26,7 @@ function toJson({ csvContent }: IToJsonParams): ToJsonResponse {
   }> = [];
 
   lines.forEach((line) => {
-    const lineValues = line.split(',');
+    const lineValues = line.split(separator);
 
     let serializedLine = {};
 

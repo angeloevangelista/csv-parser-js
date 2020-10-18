@@ -2,20 +2,21 @@ import loadContent from './loadContent';
 import toJson from './toJson';
 
 interface IHandleInputChangeParams {
-  inputElement: HTMLInputElement | null;
-}
-
-interface IHandleInputChangeResponse {
-  filename: string;
-  content: object[];
+  inputElement: HTMLInputElement;
+  separator?: string;
 }
 
 type HandleInputChangeResponse = Promise<
-  IHandleInputChangeResponse | undefined
+  | {
+      filename: string;
+      content: object[];
+    }
+  | undefined
 >;
 
 async function handleInputChange({
   inputElement,
+  separator = ',',
 }: IHandleInputChangeParams): HandleInputChangeResponse {
   if (!inputElement) {
     return Promise.reject('Element not found');
@@ -31,10 +32,10 @@ async function handleInputChange({
   const csvContent = await loadContent({ csvFile });
 
   if (!csvContent) {
-    return Promise.reject('File with no content.');
+    return Promise.resolve(undefined);
   }
 
-  const serializedCSV = toJson({ csvContent });
+  const serializedCSV = toJson({ csvContent, separator });
 
   return {
     filename: name,
