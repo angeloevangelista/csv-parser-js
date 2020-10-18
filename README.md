@@ -10,6 +10,15 @@
   </p>
 </p>
 
+# Overview
+
+- [Usage](#usage)
+  - [handleInputChange](#handleInputChange)
+  - [loadContent](#loadContent)
+  - [toJson](#toJson)
+  <!-- - [Contribute](#contribute) -->
+- [License](#memo-license)
+
 # Usage
 
 Import the files, that you can find on `build/`, in your page, then you will be able to invoke `CSV`. It contains three methods you can use to handle your CSV files on browser
@@ -96,3 +105,7 @@ X Incorrect:
   ]
 */
 ```
+
+## :memo: License
+
+This project is under license MIT. See the file [LICENSE](LICENSE) for more details.
