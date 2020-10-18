@@ -20,10 +20,10 @@ It's basically what you need to add on change event of your input element and it
 
 **Parameters**
 
-```javascript
-const params = {
-  inputElement: 'HTMLInputElement',
-  separator: 'string'; // default = ','
+```typescript
+interface IParams {
+  inputElement: HTMLInputElement;
+  separator?: string; // default = ','
 }
 ```
 
@@ -33,11 +33,11 @@ const params = {
 
 If the file is in blank, You will receive `undefined`, but if the file has a valid content you will receive an object in the following format:
 
-```javascript
-const response = {
-  filename: 'string',
-  content: 'object[]', // the properties will follow the header found in this CSV file
-};
+```typescript
+interface IResponse {
+  filename: string;
+  content: object[]; // the properties will follow the header found in this CSV file
+}
 ```
 
 ## **loadContent**
@@ -46,10 +46,10 @@ This function and the other one 'toJson' are just exported in case you wish to v
 
 **Parameters**
 
-```javascript
-const params = {
-  csvFile: 'Blob | File',
-};
+```typescript
+interface IParams {
+  csvFile: Blob | File;
+}
 ```
 
 **Return type**
@@ -66,11 +66,11 @@ This function and the other one 'toJson' are just exported in case you wish to v
 
 **csvContent**: The raw content of a CSV file.
 
-```javascript
-const params = {
-  csvContent: 'string',
-  separator: 'string', // default = ','
-};
+```typescript
+interface IParams {
+  csvContent: string;
+  separator?: string; // default = ','
+}
 ```
 
 **Return type**
