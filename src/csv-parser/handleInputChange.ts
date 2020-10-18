@@ -16,19 +16,22 @@ async function handleSelectFile({
   inputElement,
 }: IHandleSelectFileParams): HandleSelectFileResponse {
   if (!inputElement) {
-    console.error('Element not found.');
-    return;
+    return Promise.reject('Element not found');
   }
 
   if (!inputElement.files || inputElement.files.length === 0) {
-    console.warn('No files selected.');
-    return;
+    return Promise.reject('No file selected.');
   }
 
   const { name } = inputElement.files[0];
 
   const csvFile = inputElement.files[0];
   const csvContent = await loadContent({ csvFile });
+
+  if (!csvContent) {
+    return Promise.reject('File with no content.');
+  }
+
   const serializedCSV = toJson({ csvContent });
 
   return {

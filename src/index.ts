@@ -1,4 +1,4 @@
-module.exports = require('./csv-parser');
+export * from './csv-parser';
 
 // import CSV from './csv';
 // window.onload = () => {

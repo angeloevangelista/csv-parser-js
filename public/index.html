@@ -27,12 +27,19 @@
     <script src="./csv-parser.js"></script>
     <script>
       function handleChangeFile(event) {
-        CSV.handleSelectFile({ inputElement: this }).then((response) => {
-          document.getElementById('filename-field').innerHTML =
-            response.filename;
+        CSV.handleSelectFile({ inputElement: this })
+          .then((response) => {
+            document.getElementById('filename-field').innerHTML =
+              response.filename;
 
-          console.log(response);
-        });
+            console.log(response);
+          })
+          .catch((error) => {
+            alert('An error occurred, check the console.');
+            console.error({
+              error,
+            });
+          });
       }
 
       document

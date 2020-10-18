@@ -2,12 +2,12 @@ interface ILoadContentParams {
   csvFile: Blob | File;
 }
 
-type LoadContentResponse = Promise<string>;
+type LoadContentResponse = Promise<string | undefined>;
 
 async function loadContent({
   csvFile,
 }: ILoadContentParams): LoadContentResponse {
-  return new Promise<string>((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     try {
       const reader = new FileReader();
 

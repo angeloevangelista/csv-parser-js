@@ -6,7 +6,9 @@ interface ICSV {
   loadContent: (
     params: LoadContent.ILoadContentParams,
   ) => LoadContent.LoadContentResponse;
+
   toJson: (params: ToJson.IToJsonParams) => ToJson.ToJsonResponse;
+
   handleSelectFile: (
     params: HandleInputChange.IHandleSelectFileParams,
   ) => HandleInputChange.HandleSelectFileResponse;
