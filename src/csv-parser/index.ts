@@ -1,6 +1,6 @@
-import * as HandleInputChange from './handleInputChange';
-import * as LoadContent from './loadContent';
-import * as ToJson from './toJson';
+import * as HandleInputChange from './functions/handleInputChange';
+import * as LoadContent from './functions/loadContent';
+import * as ToJson from './functions/toJson';
 
 interface ICSV {
   loadContent: (
