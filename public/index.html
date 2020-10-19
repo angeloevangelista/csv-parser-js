@@ -28,7 +28,7 @@
     <script src="./csv-parser.js"></script>
     <!-- <script src="../build/csv-parser.js"></script> -->
     <script>
-      function handleError(err) {
+      function handleError(error) {
         alert('An error occurred, check the console.');
         console.error({
           error,
@@ -43,8 +43,8 @@
 
       function handleChangeFile(event) {
         CSV.handleInputChange({ inputElement: this, separator: ',' })
-          .catch(handleError)
-          .then(handleSuccess);
+          .then(handleSuccess)
+          .catch(handleError);
       }
 
       // async function handleChangeFile(event) {
