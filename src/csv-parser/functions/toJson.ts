@@ -1,3 +1,5 @@
+import JokerSwitcher from '../util/JokerSwitcher';
+
 interface IToJsonParams {
   csvContent: string;
   separator?: string;
@@ -11,22 +13,35 @@ function toJson({
   csvContent,
   separator = ',',
 }: IToJsonParams): ToJsonResponse {
+  const separatorRegex = new RegExp(separator, 'g');
+
   let lines = csvContent.split('\n');
 
-  let header = lines[0]
-    .split(separator)
-    .map((column) => column.trim().replace(/"/g, ''));
+  const header = JokerSwitcher(
+    lines[0].split(separator).map((column) => column.trim()),
+  )
+    .useJoker({ delimiterChar: '"' })
+    .removeJoker({ replacementContent: ',' });
 
   lines.shift();
 
-  lines = lines.filter((line) => line.replace(/,/g, '').trim());
+  // this removes all lines in blank
+  lines = lines.filter((line) => line.replace(separatorRegex, '').trim());
 
   let collection: Array<{
     [key: string]: string;
   }> = [];
 
   lines.forEach((line) => {
-    const lineValues = line.split(separator);
+    let lineValues = line.split(separator);
+
+    const hasComma = header.length < lineValues.length;
+
+    if (hasComma) {
+      lineValues = JokerSwitcher(lineValues)
+        .useJoker({ delimiterChar: '"' })
+        .removeJoker({ replacementContent: ',' });
+    }
 
     let serializedLine = {};
 
