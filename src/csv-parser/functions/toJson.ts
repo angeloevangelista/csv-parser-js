@@ -1,3 +1,4 @@
+import * as ValidateFields from './validateFields';
 import JokerSwitcher from '../util/JokerSwitcher';
 
 interface IToJsonParams {
@@ -5,14 +6,19 @@ interface IToJsonParams {
   separator?: string;
 }
 
-type ToJsonResponse = Array<{
-  [key: string]: string | number;
-}>;
+interface IToJsonResponse {
+  serializedData: Array<{
+    [key: string]: string | number;
+  }>;
+  validateFields: (
+    expectedColumns: string[],
+  ) => ValidateFields.IValidateFieldsResponse;
+}
 
 function toJson({
   csvContent,
   separator = ',',
-}: IToJsonParams): ToJsonResponse {
+}: IToJsonParams): IToJsonResponse {
   const separatorRegex = new RegExp(separator, 'g');
 
   let lines = csvContent.split('\n');
@@ -66,8 +72,15 @@ function toJson({
     collection.push(serializedLine);
   });
 
-  return collection;
+  return {
+    serializedData: collection,
+    validateFields: (expectedColumns) =>
+      ValidateFields.default({
+        data: collection,
+        expectedColumns,
+      }),
+  };
 }
 
-export { IToJsonParams, ToJsonResponse, toJson };
+export { IToJsonParams, IToJsonResponse, toJson };
 export default toJson;

@@ -16,7 +16,9 @@
   - [handleInputChange](#handleInputChange)
   - [loadContent](#loadContent)
   - [toJson](#toJson)
-  <!-- - [Contribute](#contribute) -->
+  - [validateFields](#validateFields)
+    <!-- - [Contribute](#contribute) -->
+    <!-- - [How to run](#how-to-run) -->
 - [License](#memo-license)
 
 # Usage
@@ -84,12 +86,17 @@ interface IParams {
 
 **Return type**
 
-This function returns an object with the serialized CSV as the following:
+This function returns an object with the serialized CSV and also the next function, witch gives You the possibility to check the columns of the collection.
 
 ```typescript
-Array<{
-  [key: string]: string | number;
-}>
+interface IResponse {
+  serializedData: Array<{
+    [key: string]: string | number;
+  }>;
+  validateFields: (
+    expectedColumns: string[],
+  ) => ValidateFields.IValidateFieldsResponse;
+}
 
 /* e.g:
 
@@ -105,6 +112,39 @@ X Incorrect:
   ]
 */
 ```
+
+## **validateFields**
+
+This function validates if the serialized content has the specified fields.
+
+**Parameters**
+
+**csvContent**: The raw content of a CSV file.
+
+```typescript
+interface IParams {
+  expectedColumns: string[];
+  data: Array<{
+    [key: string]: string | number;
+  }>;
+}
+```
+
+**Return type**
+
+This function returns an object with the serialized CSV as the following:
+
+```typescript
+interface IResponse {
+  isValid: boolean;
+  error: Error | null;
+  data: Array<{
+    [key: string]: string | number;
+  }>;
+}
+```
+
+<!-- # How to run -->
 
 ## :memo: License
 

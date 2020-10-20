@@ -35,11 +35,11 @@ async function handleInputChange({
     return Promise.resolve(undefined);
   }
 
-  const serializedCSV = toJson({ csvContent, separator });
+  const { serializedData } = toJson({ csvContent, separator });
 
   return {
     filename: name,
-    content: serializedCSV,
+    content: serializedData,
   };
 }
 
