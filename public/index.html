@@ -41,23 +41,31 @@
         console.log(response);
       }
 
-      function handleChangeFile(event) {
-        CSV.handleInputChange({ inputElement: this, separator: ',' })
-          .then(handleSuccess)
-          .catch(handleError);
-      }
-
-      // async function handleChangeFile(event) {
-      //   if (!this.files[0]) {
-      //     return;
-      //   }
-
-      //   const file = this.files[0];
-
-      //   const fileContent = await CSV.loadContent({ csvFile: file });
-
-      //   console.log(fileContent);
+      // function handleChangeFile() {
+      //   CSV.handleInputChange({ inputElement: this, separator: ',' })
+      //     .then(handleSuccess)
+      //     .catch(handleError);
       // }
+
+      async function handleChangeFile() {
+        if (!this.files[0]) {
+          return;
+        }
+
+        const file = this.files[0];
+
+        const fileContent = await CSV.loadContent({ csvFile: file });
+
+        const { data: serializedData, error, isValid } = CSV.toJson({
+          csvContent: fileContent,
+        }).validateFields(['Column_01', 'Column_02', 'Column_03']);
+
+        console.log({
+          serializedData,
+          error,
+          isValid,
+        });
+      }
 
       document
         .getElementById('csv-input')
