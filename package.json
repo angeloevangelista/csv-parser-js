@@ -1,5 +1,5 @@
 {
-  "name": "csv-parser-js",
+  "name": "@angeloevangelista/csv-parser-js",
   "version": "1.0.0",
   "description": "A tool to serialize csv content into JSON",
   "main": "src/index.js",
