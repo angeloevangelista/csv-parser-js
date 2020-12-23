@@ -1,19 +1,36 @@
 {
   "name": "csv-parser-js",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:angeloevangelista/csv-parser-js.git",
-  "author": "Angelo Evangelista <angeloevan.ane@gmail.com>",
-  "license": "MIT",
-  "scripts": {
-    "dev": "webpack serve",
-    "build": "webpack"
-  },
+  "description": "A tool to serialize csv content into JSON",
+  "main": "src/index.js",
   "devDependencies": {
     "ts-loader": "^8.0.5",
     "typescript": "^4.0.3",
     "webpack": "^5.1.3",
     "webpack-cli": "^4.0.0",
     "webpack-dev-server": "^3.11.0"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angeloevangelista/csv-parser-js.git"
+  },
+  "keywords": [
+    "csv",
+    "js",
+    "json",
+    "parse",
+    "browser",
+    "open-source"
+  ],
+  "author": "Angelo Evangelista <angeloevan.ane@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angeloevangelista/csv-parser-js/issues"
+  },
+  "homepage": "https://github.com/angeloevangelista/csv-parser-js#readme"
 }
